@@ -4,12 +4,12 @@
  */
 
 export const SITE = {
-  name: 'njx-shop',
-  defaultTitle: 'njX Shop — good gear for long builds',
+  name: 'dâu tây tức giận',
+  defaultTitle: 'Mặt trời kiêu sa',
   defaultDescription:
     'Demo storefront for astro-njx-store: apparel, desk goods and coffee. Astro + Tailwind, mock data out of the box, Shopify with two env vars.',
-  logoDark: '/logo/njx-shop-dark.png', // dark mark — shown on the light theme
-  logoLight: '/logo/njx-shop-light.png', // light mark — shown on the dark theme
+  logoDark: '/logo/njx-shop-light.png', // dùng chung 1 ảnh cho cả 2 theme
+  logoLight: '/logo/njx-shop-light.png', // dùng chung 1 ảnh cho cả 2 theme
   // Catalogue-clean placeholders (astro.build/themes rule: social icons must link
   // to a root domain with no username; only example.com for placeholder URLs).
   repoUrl: 'https://github.com',
@@ -18,7 +18,7 @@ export const SITE = {
 } as const;
 
 export const ANNOUNCEMENT = {
-  text: 'Free shipping on orders over $75 — roasted and packed every Monday',
+  text: 'Black Friday .....',
   linkLabel: 'Shop new arrivals →',
   linkHref: '/collections/apparel',
 } as const;
@@ -31,7 +31,6 @@ export const HEADER = {
   ],
   aria: {
     search: 'Search',
-    account: 'Account',
     favorites: 'Favorites',
     theme: 'Toggle theme',
     cart: 'Open cart',
@@ -84,8 +83,6 @@ export const THANKS_MODAL = {
   emoji: '🎉',
   title: 'Thanks for the order!',
   text: 'This is a demo store, so nothing was charged. A confirmation would normally land in your inbox in a minute.',
-  starLabel: 'View your orders',
-  starHref: '/account',
   keepLabel: 'Keep browsing',
   madeByLabel: 'Built with Astro',
   madeByHref: 'https://astro.build',

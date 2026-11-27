@@ -16,55 +16,26 @@ export const HOME = {
     note: 'Ships worldwide from one small warehouse. 30-day returns, no forms.',
     image: { src: '/products/hero.jpg', alt: 'Walnut desk setup with laptop and coffee' },
   },
-  themeBar: {
-    text: 'This store is a free Astro theme.',
-    cta: { label: 'Get it on GitHub', href: SITE.repoUrl },
-    cta2: { label: 'All themes & Pro', href: SITE.themesUrl },
-  },
   collections: { title: 'Shop by collection' },
   products: { title: 'Everything we make', countLabel: 'products' },
   values: [
     {
-      title: 'Made to be used up',
-      text: '220 gsm cotton, solid walnut, merino felt. Materials that wear in, not out.',
+      title: 'Giao hàng toàn quốc',
+      text: 'Đóng gói cẩn thận, chuyên nghiệp.',
     },
     {
-      title: 'Roasted this week',
-      text: 'Coffee leaves the roaster on Monday and your doorstep by Friday. Date on every bag.',
+      title: 'Thanh toán an toàn',
+      text: 'Thanh toán qua thông tin của chủ shop được cấp qua website.',
     },
     {
-      title: 'Returns without forms',
-      text: "30 days, reply to your order email, done. If it's not right, it goes back.",
+      title: 'Hỗ trợ nhanh chóng',
+      text: "Liên hệ shop qua Zalo để được hỗ trợ.",
     },
   ],
-  quote: {
-    text: '“The hoodie survived two winters and a hundred deploys. The coffee is the reason the deploys shipped.”',
-    author: 'Jamie R., customer since 2024',
-  },
-  colophon: {
-    eyebrow: 'njx-store · free ecommerce theme for Astro',
-    title: 'This whole store is a theme. Take it.',
-    text: 'Everything you just clicked — cart, search, favorites, dark mode, checkout — is njx-store Lite, a static storefront you can fork today. Point one env var at your Shopify store and these same pages rebuild from your real catalog, hosted checkout included.',
-    ctaPrimary: { label: 'Get the theme on GitHub', href: SITE.repoUrl },
-    ctaSecondary: { label: 'How it works', href: '/about#theme' },
-    ctaThemes: { label: 'All themes & Pro', href: SITE.themesUrl },
-    stack: [
-      { strong: 'Astro 5 + Tailwind v4', text: '— 18 static pages, zero client framework' },
-      { strong: 'Node.js build', text: '— data layer runs at build time, ships pure HTML' },
-      { strong: 'Shopify Storefront API', text: '— live products, cart and hosted checkout' },
-      { strong: 'Cloudflare Pages', text: '— deploys in seconds on the free tier' },
-    ],
-    env: {
-      prefix: 'COMMERCE_PROVIDER=',
-      value: 'shopify',
-      copyValue: 'COMMERCE_PROVIDER=shopify',
-      copiedLabel: 'Copied ✓',
-    },
-  },
 } as const;
 
 export const COLLECTION = {
-  metaSuffix: ` — ${SITE.name === 'njx-shop' ? 'njX Shop' : SITE.name}`,
+  metaSuffix: ` — ${SITE.name === 'dâu tây tức giận' ? 'njX Shop' : SITE.name}`,
   allTag: 'All',
   sortLabel: 'Sort',
   sortOptions: [
@@ -205,37 +176,6 @@ export const FAQ_PAGE = {
       a: 'It is a demo for the astro-njx-store theme: the products are fictional, but everything else works — cart, checkout flow, search, themes. Grab the theme on GitHub and make it your real store.',
     },
   ],
-} as const;
-
-export const ACCOUNT = {
-  meta: {
-    title: 'Account — njX Shop',
-    description: 'Sign in to your njX Shop account or create a new one.',
-  },
-  tabs: { login: 'Sign in', register: 'Create account' },
-  login: {
-    title: 'Welcome back',
-    sub: 'Orders, addresses and faster checkout.',
-    submit: 'Sign in',
-    demoNote: 'Demo mode — sign-in is a stub. Connect Shopify Customer Accounts or your own backend here.',
-  },
-  register: {
-    title: 'Join njX Shop',
-    sub: 'One account for orders, returns and early drops.',
-    submit: 'Create account',
-    demoNote: 'Demo mode — account creation is a stub. Connect Shopify Customer Accounts or your own backend here.',
-  },
-  fields: {
-    nameLabel: 'Name',
-    namePlaceholder: 'Alex Builder',
-    emailLabel: 'Email',
-    emailPlaceholder: 'you@work.com',
-    passwordLabel: 'Password',
-    passwordPlaceholder: '••••••••',
-    remember: 'Remember me',
-    forgot: 'Forgot password?',
-  },
-  pageNote: 'Demo page — wire it to Shopify Customer Accounts or your own auth backend.',
 } as const;
 
 export const FAVORITES_PAGE = {
