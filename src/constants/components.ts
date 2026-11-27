@@ -4,7 +4,7 @@
  */
 
 export const SITE = {
-  name: 'dâu tây tức giận',
+  name: 'Mặt trời kiêu sa',
   defaultTitle: 'Mặt trời kiêu sa',
   defaultDescription:
     'Demo storefront for astro-njx-store: apparel, desk goods and coffee. Astro + Tailwind, mock data out of the box, Shopify with two env vars.',
