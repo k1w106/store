@@ -3,6 +3,7 @@
 // client-side from the product index Layout already puts on <body>.
 import Layout from '../layouts/Layout.astro';
 import { FAVORITES_PAGE as T } from '../constants/pages';
+const local = (path: string) => import.meta.env.BASE_URL.replace(/\/?$/, '/') + path.replace(/^\/+/, '');
 ---
 
 <Layout title={T.meta.title} description={T.meta.description}>
@@ -16,7 +17,7 @@ import { FAVORITES_PAGE as T } from '../constants/pages';
       <p class="text-4xl">{T.empty.icon}</p>
       <p class="mt-3 text-[16px] font-medium">{T.empty.title}</p>
       <p class="mt-1 text-[14px] text-muted">{T.empty.text}</p>
-      <a href={T.empty.cta.href} class="mt-6 inline-block rounded-md bg-pine px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-pine-deep">
+      <a href={local(T.empty.cta.href)} class="mt-6 inline-block rounded-md bg-pine px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-pine-deep">
         {T.empty.cta.label}
       </a>
     </div>
@@ -26,6 +27,7 @@ import { FAVORITES_PAGE as T } from '../constants/pages';
     import { favorites } from '../lib/favorites';
     import { FAVORITES_PAGE as T } from '../constants/pages';
 
+    const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     const index: { handle: string; title: string; price: number; image: string }[] =
       JSON.parse(document.body.dataset.searchIndex!);
     const grid = document.querySelector<HTMLElement>('[data-fav-grid]')!;
@@ -42,7 +44,7 @@ import { FAVORITES_PAGE as T } from '../constants/pages';
       grid.innerHTML = items
         .map(
           (p) => `
-          <a href="/products/${p.handle}" class="group block rounded-lg transition hover:bg-tile/60">
+          <a href="${base}products/${p.handle}" class="group block rounded-lg transition hover:bg-tile/60">
             <div class="relative overflow-hidden rounded-lg bg-tile">
               <img src="${p.image}" alt="${p.title}" class="aspect-square w-full object-cover transition duration-300 group-hover:scale-[1.03]" loading="lazy"/>
               <button type="button" data-fav-toggle="${p.handle}" onclick="event.preventDefault()"

@@ -16,8 +16,13 @@ const {
 } = Astro.props;
 
 // Active nav item: bg-tile/text-ink are tokens, they follow the theme automatically
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
-const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+const local = (url: string) => /^(?:[a-z][a-z+.-]*:|#|\/\/)/i.test(url) ? url : base + url.replace(/^\/+/, '');
+const isActive = (href: string) => {
+  const full = local(href).replace(/\/$/, '') || '/';
+  return full === '/' ? path === '/' : path.startsWith(full);
+};
 const navCls = (href: string, base: string, active: string) =>
   `${base} ${isActive(href) ? active : ""}`.trim();
 
@@ -38,7 +43,7 @@ const searchIndex = JSON.stringify(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href="/sticker.png" />
+    <link rel="icon" type="image/png" href={local('/sticker.png')} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -60,7 +65,7 @@ const searchIndex = JSON.stringify(
       <span>{ANNOUNCEMENT.text}</span>
       <span class="opacity-50">·</span>
       <a
-        href={ANNOUNCEMENT.linkHref}
+        href={local(ANNOUNCEMENT.linkHref)}
         target="_blank"
         rel="noopener"
         class="font-semibold text-white underline underline-offset-2 hover:opacity-90"
@@ -71,9 +76,9 @@ const searchIndex = JSON.stringify(
       <div class="overflow-hidden rounded-2xl border border-line bg-paper/90 shadow-sm backdrop-blur">
       <nav class="flex h-14 items-center justify-between px-3 sm:h-16 sm:px-5">
         <div class="flex items-center gap-3">
-          <a href="/" class="flex items-center gap-2.5">
-            <img src={SITE.logoDark} alt="" class="logo-on-light h-8 w-8 rounded-lg" />
-            <img src={SITE.logoLight} alt="" class="logo-on-dark h-8 w-8 rounded-lg" />
+          <a href={local('/')} class="flex items-center gap-2.5">
+            <img src={local(SITE.logoDark)} alt="" class="logo-on-light h-8 w-8 rounded-lg" />
+            <img src={local(SITE.logoLight)} alt="" class="logo-on-dark h-8 w-8 rounded-lg" />
             <span class="font-display text-[21px] font-bold tracking-tight">{SITE.name}</span>
           </a>
           <!-- on mobile the theme toggle lives in the nav drawer -->
@@ -88,7 +93,7 @@ const searchIndex = JSON.stringify(
         </div>
         <div class="hidden items-center gap-1 text-[15px] text-muted sm:flex">
           {HEADER.navLinks.map((l) => (
-            <a href={l.href} class={navCls(l.href, "rounded-md px-3 py-2 hover:bg-tile hover:text-ink", "bg-tile text-ink")}>{l.label}</a>
+            <a href={local(l.href)} class={navCls(l.href, "rounded-md px-3 py-2 hover:bg-tile hover:text-ink", "bg-tile text-ink")}>{l.label}</a>
           ))}
         </div>
         <div class="flex items-center gap-1">
@@ -97,7 +102,7 @@ const searchIndex = JSON.stringify(
             <circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" />
           </svg>
         </button>
-        <a href="/favorites" class="relative hidden rounded-md p-2.5 text-muted hover:bg-tile hover:text-ink sm:block" aria-label={HEADER.aria.favorites}>
+        <a href={local('/favorites')} class="relative hidden rounded-md p-2.5 text-muted hover:bg-tile hover:text-ink sm:block" aria-label={HEADER.aria.favorites}>
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 20.5c-5.5-3.6-8.5-6.9-8.5-10.4A4.6 4.6 0 0 1 8.1 5.4c1.6 0 3 .8 3.9 2.1a4.7 4.7 0 0 1 3.9-2.1 4.6 4.6 0 0 1 4.6 4.7c0 3.5-3 6.8-8.5 10.4z" />
           </svg>
@@ -154,7 +159,7 @@ const searchIndex = JSON.stringify(
       <div class="rounded-2xl border border-line bg-tile/60">
       <div class="grid gap-8 px-5 py-8 sm:grid-cols-[1.2fr_1fr] sm:gap-10 sm:px-10 sm:py-12">
         <div>
-          <p class="flex items-center gap-2 font-display text-xl font-bold"><img src={SITE.logoDark} alt="" class="logo-on-light h-7 w-7 rounded-md" /><img src={SITE.logoLight} alt="" class="logo-on-dark h-7 w-7 rounded-md" />{SITE.name}</p>
+          <p class="flex items-center gap-2 font-display text-xl font-bold"><img src={local(SITE.logoDark)} alt="" class="logo-on-light h-7 w-7 rounded-md" /><img src={local(SITE.logoLight)} alt="" class="logo-on-dark h-7 w-7 rounded-md" />{SITE.name}</p>
           <p class="mt-3 max-w-[36ch] text-[14px] leading-relaxed text-muted">{FOOTER.tagline}</p>
         </div>
         <nav class="grid grid-cols-2 gap-8 text-[14px] sm:grid-cols-3" aria-label="Footer">
@@ -165,7 +170,7 @@ const searchIndex = JSON.stringify(
                 {col.links.map((l) => (
                   <li>
                     <a
-                      href={l.href}
+                      href={l.href.startsWith('/') ? local(l.href) : l.href}
                       class={l.href.startsWith('/')
                         ? navCls(l.href, "hover:text-ink hover:underline underline-offset-4", "text-ink font-semibold underline")
                         : "hover:text-ink hover:underline underline-offset-4"}
@@ -182,16 +187,16 @@ const searchIndex = JSON.stringify(
       <div class="flex flex-col-reverse items-center gap-y-4 border-t border-line px-5 py-4 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-x-8 sm:px-10 sm:py-5">
         <div class="flex flex-wrap items-center gap-5 text-[13px] text-muted">
           {FOOTER.legalLinks.map((l) => (
-            <a href={l.href} class={navCls(l.href, "hover:text-ink hover:underline underline-offset-4", "text-ink font-semibold underline")}>{l.label}</a>
+            <a href={local(l.href)} class={navCls(l.href, "hover:text-ink hover:underline underline-offset-4", "text-ink font-semibold underline")}>{l.label}</a>
           ))}
         </div>
         <!-- mobile: 3+2 grid with a centered second row; sm+: single row -->
         <div class="tech-row grid w-full grid-cols-6 items-center justify-items-center gap-y-3 sm:flex sm:w-auto sm:flex-wrap sm:gap-5">
-          <img src="/tech/astro.png" alt="Astro" title="Astro" class="col-span-2 h-9 w-auto" loading="lazy" />
-          <img src="/tech/tailwind.png" alt="Tailwind CSS" title="Tailwind CSS" class="col-span-2 h-7 w-auto" loading="lazy" />
-          <img src="/tech/nodejs.png" alt="Node.js" title="Node.js" class="col-span-2 h-9 w-auto" loading="lazy" />
-          <img src="/tech/shopify.png" alt="Shopify" title="Shopify" class="col-span-2 col-start-2 h-9 w-auto" loading="lazy" />
-          <img src="/tech/cloudflare.png" alt="Cloudflare" title="Cloudflare" class="col-span-2 h-9 w-auto" loading="lazy" />
+          <img src={local('/tech/astro.png')} alt="Astro" title="Astro" class="col-span-2 h-9 w-auto" loading="lazy" />
+          <img src={local('/tech/tailwind.png')} alt="Tailwind CSS" title="Tailwind CSS" class="col-span-2 h-7 w-auto" loading="lazy" />
+          <img src={local('/tech/nodejs.png')} alt="Node.js" title="Node.js" class="col-span-2 h-9 w-auto" loading="lazy" />
+          <img src={local('/tech/shopify.png')} alt="Shopify" title="Shopify" class="col-span-2 col-start-2 h-9 w-auto" loading="lazy" />
+          <img src={local('/tech/cloudflare.png')} alt="Cloudflare" title="Cloudflare" class="col-span-2 h-9 w-auto" loading="lazy" />
         </div>
       </div>
       </div>
@@ -209,7 +214,7 @@ const searchIndex = JSON.stringify(
         </button>
         <p class="mt-3 text-[12px] text-muted">
           Made by <a href={THANKS_MODAL.madeByHref} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-ink">{THANKS_MODAL.madeByLabel}</a>
-          · <a href={THANKS_MODAL.moreHref} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-ink">{THANKS_MODAL.moreLabel}</a>
+          · <a href={local(THANKS_MODAL.moreHref)} class="underline underline-offset-2 hover:text-ink">{THANKS_MODAL.moreLabel}</a>
         </p>
       </div>
     </div>
@@ -222,7 +227,7 @@ const searchIndex = JSON.stringify(
       aria-label={CART.ariaDrawer}
     >
       <div class="flex items-center justify-between border-b border-line px-6 py-5">
-        <h2 class="flex items-center gap-2 font-display text-xl font-bold"><img src={SITE.logoDark} alt="" class="logo-on-light h-7 w-7 rounded-md" /><img src={SITE.logoLight} alt="" class="logo-on-dark h-7 w-7 rounded-md" />{SITE.name}</h2>
+        <h2 class="flex items-center gap-2 font-display text-xl font-bold"><img src={local(SITE.logoDark)} alt="" class="logo-on-light h-7 w-7 rounded-md" /><img src={local(SITE.logoLight)} alt="" class="logo-on-dark h-7 w-7 rounded-md" />{SITE.name}</h2>
         <div class="flex items-center gap-1">
           <button id="cart-clear" class="hidden rounded-md px-2.5 py-2 text-[13px] text-muted hover:text-ink" aria-label={CART.ariaClear}>
             {CART.clearLabel}
@@ -251,10 +256,10 @@ const searchIndex = JSON.stringify(
     <div id="nav-backdrop" class="fixed inset-0 z-40 bg-ink/40" aria-hidden="true"></div>
     <aside id="nav-drawer" class="fixed bottom-4 right-4 top-4 z-50 flex w-[calc(100%-2rem)] max-w-sm flex-col overflow-hidden rounded-2xl border border-line bg-paper shadow-2xl" aria-label={NAV_DRAWER.ariaDrawer}>
       <div class="flex items-center justify-between border-b border-line px-4 py-4">
-        <h2 class="flex items-center gap-2 font-display text-xl font-bold"><img src={SITE.logoDark} alt="" class="logo-on-light h-7 w-7 rounded-md" /><img src={SITE.logoLight} alt="" class="logo-on-dark h-7 w-7 rounded-md" />{SITE.name}</h2>
+        <h2 class="flex items-center gap-2 font-display text-xl font-bold"><img src={local(SITE.logoDark)} alt="" class="logo-on-light h-7 w-7 rounded-md" /><img src={local(SITE.logoLight)} alt="" class="logo-on-dark h-7 w-7 rounded-md" />{SITE.name}</h2>
         <!-- icon actions: favorites, theme -->
         <div class="flex items-center gap-0.5">
-          <a href="/favorites" class="rounded-md p-2 text-muted hover:bg-tile hover:text-ink" aria-label={HEADER.aria.favorites}>
+          <a href={local('/favorites')} class="rounded-md p-2 text-muted hover:bg-tile hover:text-ink" aria-label={HEADER.aria.favorites}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 20.5c-5.5-3.6-8.5-6.9-8.5-10.4A4.6 4.6 0 0 1 8.1 5.4c1.6 0 3 .8 3.9 2.1a4.7 4.7 0 0 1 3.9-2.1 4.6 4.6 0 0 1 4.6 4.7c0 3.5-3 6.8-8.5 10.4z" />
             </svg>
@@ -271,14 +276,14 @@ const searchIndex = JSON.stringify(
         </div>
       </div>
       <nav class="flex-1 overflow-y-auto px-4 py-4 text-[16px] font-medium">
-        <a href={NAV_DRAWER.home.href} class={navCls(NAV_DRAWER.home.href, "block rounded-md px-3 py-3 hover:bg-tile", "bg-tile font-semibold")}>{NAV_DRAWER.home.label}</a>
+        <a href={local(NAV_DRAWER.home.href)} class={navCls(NAV_DRAWER.home.href, "block rounded-md px-3 py-3 hover:bg-tile", "bg-tile font-semibold")}>{NAV_DRAWER.home.label}</a>
         <div class="mb-1 ml-3 border-l border-line pl-3">
           {NAV_DRAWER.collections.map((l) => (
-            <a href={l.href} class={navCls(l.href, "block rounded-md px-3 py-2.5 text-[15px] text-muted hover:bg-tile hover:text-ink", "bg-tile !text-ink")}>{l.label}</a>
+            <a href={local(l.href)} class={navCls(l.href, "block rounded-md px-3 py-2.5 text-[15px] text-muted hover:bg-tile hover:text-ink", "bg-tile !text-ink")}>{l.label}</a>
           ))}
         </div>
         {NAV_DRAWER.pages.map((l) => (
-          <a href={l.href} class={navCls(l.href, "block rounded-md px-3 py-3 hover:bg-tile", "bg-tile font-semibold")}>{l.label}</a>
+          <a href={local(l.href)} class={navCls(l.href, "block rounded-md px-3 py-3 hover:bg-tile", "bg-tile font-semibold")}>{l.label}</a>
         ))}
       </nav>
       <div class="border-t border-line px-6 py-5 text-[13px] text-muted">
@@ -371,6 +376,7 @@ const searchIndex = JSON.stringify(
       const searchInput = $('search-input') as HTMLInputElement;
       const searchResults = $('search-results');
       const searchEmpty = $('search-empty');
+      const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       const index: { handle: string; title: string; price: number; tags: string; image: string }[] =
         JSON.parse(document.body.dataset.searchIndex!);
 
@@ -385,7 +391,7 @@ const searchIndex = JSON.stringify(
         searchResults.innerHTML = hits
           .map(
             (p) => `
-            <a href="/products/${p.handle}" class="group flex items-center gap-3 rounded-md p-2 hover:bg-tile">
+            <a href="${base}products/${p.handle}" class="group flex items-center gap-3 rounded-md p-2 hover:bg-tile">
               <img src="${p.image}" alt="" class="h-14 w-14 rounded-md bg-tile object-cover"/>
               <span class="min-w-0">
                 <span class="block truncate text-[14px] font-medium group-hover:underline group-hover:underline-offset-4">${p.title}</span>

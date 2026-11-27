@@ -149,7 +149,7 @@ export const FAQ_PAGE = {
   },
   title: 'Questions we get',
   introHtml:
-    'Short answers, no legal fog. Missing something? <a href="/contacts" class="text-pine underline underline-offset-2">Write to us.</a>',
+    `Short answers, no legal fog. Missing something? <a href="${import.meta.env.BASE_URL.replace(/\/?$/, '/')}contacts" class="text-pine underline underline-offset-2">Write to us.</a>`,
   items: [
     {
       q: 'How long does shipping take?',

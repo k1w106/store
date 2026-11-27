@@ -1,6 +1,7 @@
 ---
 import type { Product } from '../lib/commerce';
 import { PRODUCT_CARD as T } from '../constants/components';
+const local = (path: string) => import.meta.env.BASE_URL.replace(/\/?$/, '/') + path.replace(/^\/+/, '');
 
 interface Props {
   product: Product;
@@ -21,7 +22,7 @@ const cartLine = JSON.stringify({
 });
 ---
 
-<a href={`/products/${product.handle}`} class="group block rounded-lg transition hover:bg-tile/60">
+<a href={local(`/products/${product.handle}`)} class="group block rounded-lg transition hover:bg-tile/60">
   <div class="relative overflow-hidden rounded-lg bg-tile">
     <div class="aspect-square">
       {img && (

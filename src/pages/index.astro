@@ -3,15 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import ProductCard from '../components/ProductCard.astro';
 import { commerce } from '../lib/commerce';
 import { HOME as T } from '../constants/pages';
+const local = (path: string) => import.meta.env.BASE_URL.replace(/\/?$/, '/') + path.replace(/^\/+/, '');
 
 const [products, collections] = await Promise.all([
   commerce.listProducts({ limit: 8 }),
   commerce.listCollections(),
 ]);
 const shelfImages: Record<string, string> = {
-  apparel: '/products/deep-work-hoodie.jpg',
-  desk: '/products/walnut-laptop-stand.jpg',
-  coffee: '/products/midnight-roast.jpg',
+  apparel: local('/products/deep-work-hoodie.jpg'),
+  desk: local('/products/walnut-laptop-stand.jpg'),
+  coffee: local('/products/midnight-roast.jpg'),
 };
 ---
 
@@ -24,17 +25,17 @@ const shelfImages: Record<string, string> = {
       </h1>
       <p class="mt-5 max-w-[44ch] text-[17px] leading-relaxed text-muted">{T.hero.text}</p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href={T.hero.ctaPrimary.href} class="rounded-md bg-pine px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-pine-deep">
+        <a href={local(T.hero.ctaPrimary.href)} class="rounded-md bg-pine px-6 py-3.5 text-[15px] font-semibold text-white hover:bg-pine-deep">
           {T.hero.ctaPrimary.label}
         </a>
-        <a href={T.hero.ctaSecondary.href} class="rounded-md border border-ink px-6 py-3.5 text-[15px] font-semibold hover:bg-tile">
+        <a href={local(T.hero.ctaSecondary.href)} class="rounded-md border border-ink px-6 py-3.5 text-[15px] font-semibold hover:bg-tile">
           {T.hero.ctaSecondary.label}
         </a>
       </div>
       <p class="mt-6 text-[13px] text-muted">{T.hero.note}</p>
     </div>
     <div class="overflow-hidden rounded-xl bg-tile">
-      <img src={T.hero.image.src} alt={T.hero.image.alt} class="aspect-[4/5] w-full object-cover" />
+      <img src={local(T.hero.image.src)} alt={T.hero.image.alt} class="aspect-[4/5] w-full object-cover" />
     </div>
   </section>
 
@@ -43,7 +44,7 @@ const shelfImages: Record<string, string> = {
     <h2 class="font-display text-3xl font-bold tracking-tight">{T.collections.title}</h2>
     <div class="mt-7 grid gap-5 sm:grid-cols-3">
       {collections.filter((c) => shelfImages[c.handle]).map((c) => (
-        <a href={`/collections/${c.handle}`} class="group block">
+        <a href={local(`/collections/${c.handle}`)} class="group block">
           <div class="overflow-hidden rounded-lg bg-tile">
             <img
               src={shelfImages[c.handle]}

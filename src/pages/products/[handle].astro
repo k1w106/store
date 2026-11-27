@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { commerce } from '../../lib/commerce';
 import { PRODUCT as T } from '../../constants/pages';
+const local = (path: string) => import.meta.env.BASE_URL.replace(/\/?$/, '/') + path.replace(/^\/+/, '');
 
 export async function getStaticPaths() {
   const products = await commerce.listProducts();
@@ -33,9 +34,9 @@ const imagesJson = JSON.stringify(images);
 
 <Layout title={`${product.title} — njX Shop`} description={product.description}>
   <nav class="mx-auto max-w-6xl px-5 pt-6 text-[13px] text-muted">
-    <a href="/" class="hover:text-ink">{T.breadcrumbHome}</a>
+    <a href={local('/')} class="hover:text-ink">{T.breadcrumbHome}</a>
     <span class="mx-1.5">/</span>
-    <a href={`/collections/${product.collectionHandles[0]}`} class="capitalize hover:text-ink">{product.collectionHandles[0]}</a>
+    <a href={local(`/collections/${product.collectionHandles[0]}`)} class="capitalize hover:text-ink">{product.collectionHandles[0]}</a>
     <span class="mx-1.5">/</span>
     <span class="text-ink">{product.title}</span>
   </nav>

@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { commerce } from '../../lib/commerce';
 import { COLLECTION as T } from '../../constants/pages';
+const local = (path: string) => import.meta.env.BASE_URL.replace(/\/?$/, '/') + path.replace(/^\/+/, '');
 
 export async function getStaticPaths() {
   const collections = await commerce.listCollections();
@@ -25,7 +26,7 @@ const tags = [...new Set(products.flatMap((p) => p.tags))].sort();
     <div class="mt-7 flex flex-wrap gap-2 pb-6">
       {all.filter((c) => c.handle !== 'frontpage').map((c) => (
         <a
-          href={`/collections/${c.handle}`}
+          href={local(`/collections/${c.handle}`)}
           class:list={[
             'rounded-md border px-4 py-2.5 text-[14px] transition',
             c.handle === collection.handle
