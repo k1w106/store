@@ -1,0 +1,36 @@
+{
+  "id": "p9",
+  "handle": "capybara",
+  "title": "Capy",
+  "description": "Capy",
+  "images": [
+    {
+      "src": "/public/products/njx-shop-light-2.png"
+    }
+  ],
+  "price": {
+    "amount": 200000,
+    "currency": "VND"
+  },
+  "compareAtPrice": {
+    "amount": 100000,
+    "currency": "VND"
+  },
+  "variants": [
+    {
+      "id": "p9v1",
+      "title": "Capy",
+      "price": {
+        "amount": 100000,
+        "currency": "VND"
+      },
+      "available": true
+    }
+  ],
+  "tags": [
+    "gau-bong"
+  ],
+  "collectionHandles": [
+    "Gấu bông"
+  ]
+}
