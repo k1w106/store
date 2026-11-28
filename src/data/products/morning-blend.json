@@ -1,0 +1,30 @@
+{
+  "id": "p8",
+  "handle": "morning-blend",
+  "title": "Morning Blend",
+  "description": "Bright and easy: citrus up front, caramel finish. The one you drink before the standup.",
+  "images": [
+    {
+      "src": "/products/morning-blend.jpg",
+      "alt": "Morning Blend coffee bag"
+    },
+    {
+      "src": "/products/midnight-roast.jpg",
+      "alt": "Morning Blend — whole beans"
+    }
+  ],
+  "price": {
+    "amount": 16,
+    "currency": "USD"
+  },
+  "compareAtPrice": {
+    "amount": 20,
+    "currency": "USD"
+  },
+  "variants": [
+    { "id": "p8v1", "title": "Whole bean", "price": { "amount": 16, "currency": "USD" }, "available": true },
+    { "id": "p8v2", "title": "Ground", "price": { "amount": 16, "currency": "USD" }, "available": true }
+  ],
+  "tags": ["light-roast", "sale"],
+  "collectionHandles": ["coffee"]
+}

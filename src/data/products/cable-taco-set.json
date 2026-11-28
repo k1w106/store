@@ -1,0 +1,21 @@
+{
+  "id": "p6",
+  "handle": "cable-taco-set",
+  "title": "Cable Taco Set",
+  "description": "Six leather cable wraps with snap buttons. Your bag stops being a nest of chargers.",
+  "images": [
+    {
+      "src": "/products/cable-taco-set.jpg",
+      "alt": "Set of six leather cable organizers"
+    }
+  ],
+  "price": {
+    "amount": 19,
+    "currency": "USD"
+  },
+  "variants": [
+    { "id": "p6v1", "title": "Default", "price": { "amount": 19, "currency": "USD" }, "available": true }
+  ],
+  "tags": ["leather", "desk"],
+  "collectionHandles": ["desk"]
+}

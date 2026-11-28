@@ -1,0 +1,24 @@
+{
+  "id": "p1",
+  "handle": "ship-it-tee",
+  "title": "Ship It Tee",
+  "description": "Heavyweight 220 gsm cotton tee with a small embroidered rocket. Pre-shrunk, boxy fit, no cracking prints — the logo is stitched, not slapped on.",
+  "images": [
+    {
+      "src": "/products/ship-it-tee.jpg",
+      "alt": "Ship It Tee — black heavyweight t-shirt with embroidered rocket"
+    }
+  ],
+  "price": {
+    "amount": 32,
+    "currency": "USD"
+  },
+  "variants": [
+    { "id": "p1v1", "title": "S", "price": { "amount": 32, "currency": "USD" }, "available": true },
+    { "id": "p1v2", "title": "M", "price": { "amount": 32, "currency": "USD" }, "available": true },
+    { "id": "p1v3", "title": "L", "price": { "amount": 32, "currency": "USD" }, "available": true },
+    { "id": "p1v4", "title": "XL", "price": { "amount": 32, "currency": "USD" }, "available": false }
+  ],
+  "tags": ["cotton", "embroidered"],
+  "collectionHandles": ["apparel"]
+}

@@ -1,0 +1,113 @@
+media: public/products
+
+content:
+  - name: products
+    label: Sản phẩm
+    type: collection
+    path: src/data/products
+    filename: "{fields.handle}"
+    extension: json
+    fields:
+      - name: id
+        label: ID
+        type: string
+      - name: handle
+        label: Handle (URL slug)
+        type: string
+        description: Dùng làm đường dẫn sản phẩm, viết thường không dấu, dùng dấu gạch nối. VD: ao-thun-den
+      - name: title
+        label: Tên sản phẩm
+        type: string
+      - name: description
+        label: Mô tả
+        type: text
+      - name: images
+        label: Ảnh sản phẩm
+        type: object
+        list: true
+        fields:
+          - name: src
+            label: Ảnh
+            type: image
+          - name: alt
+            label: Mô tả ảnh
+            type: string
+      - name: price
+        label: Giá
+        type: object
+        fields:
+          - name: amount
+            label: Số tiền
+            type: number
+          - name: currency
+            label: Đơn vị tiền
+            type: string
+            default: USD
+      - name: compareAtPrice
+        label: Giá gốc (nếu đang giảm giá)
+        type: object
+        required: false
+        fields:
+          - name: amount
+            label: Số tiền
+            type: number
+          - name: currency
+            label: Đơn vị tiền
+            type: string
+            default: USD
+      - name: variants
+        label: Phân loại
+        type: object
+        list: true
+        fields:
+          - name: id
+            label: ID
+            type: string
+          - name: title
+            label: Tên (VD: S, M, L, XL)
+            type: string
+          - name: price
+            label: Giá
+            type: object
+            fields:
+              - name: amount
+                label: Số tiền
+                type: number
+              - name: currency
+                label: Đơn vị tiền
+                type: string
+                default: USD
+          - name: available
+            label: Còn hàng
+            type: boolean
+            default: true
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+        description: Dùng để lọc sản phẩm. VD: cotton, sale, dark-roast
+      - name: collectionHandles
+        label: Thuộc bộ sưu tập
+        type: string
+        list: true
+        description: Handle của collection. VD: apparel, desk, coffee
+
+  - name: collections
+    label: Bộ sưu tập
+    type: collection
+    path: src/data/collections
+    filename: "{fields.handle}"
+    extension: json
+    fields:
+      - name: id
+        label: ID
+        type: string
+      - name: handle
+        label: Handle (URL slug)
+        type: string
+      - name: title
+        label: Tên bộ sưu tập
+        type: string
+      - name: description
+        label: Mô tả
+        type: text

@@ -1,0 +1,27 @@
+{
+  "id": "p2",
+  "handle": "deep-work-hoodie",
+  "title": "Deep Work Hoodie",
+  "description": "The hoodie you reach for at 6am and forget to take off. Brushed fleece inside, double-lined hood, hidden zip pocket for keys.",
+  "images": [
+    {
+      "src": "/products/deep-work-hoodie.jpg",
+      "alt": "Deep Work Hoodie — charcoal hoodie"
+    }
+  ],
+  "price": {
+    "amount": 64,
+    "currency": "USD"
+  },
+  "compareAtPrice": {
+    "amount": 79,
+    "currency": "USD"
+  },
+  "variants": [
+    { "id": "p2v1", "title": "S", "price": { "amount": 64, "currency": "USD" }, "available": true },
+    { "id": "p2v2", "title": "M", "price": { "amount": 64, "currency": "USD" }, "available": true },
+    { "id": "p2v3", "title": "L", "price": { "amount": 64, "currency": "USD" }, "available": true }
+  ],
+  "tags": ["fleece", "sale"],
+  "collectionHandles": ["apparel"]
+}

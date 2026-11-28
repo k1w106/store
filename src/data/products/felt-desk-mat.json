@@ -1,0 +1,22 @@
+{
+  "id": "p5",
+  "handle": "felt-desk-mat",
+  "title": "Felt Desk Mat",
+  "description": "Merino felt on top, natural cork underneath. 80×30 cm — fits a keyboard, a mouse and a coffee you promised yourself you'd finish.",
+  "images": [
+    {
+      "src": "/products/felt-desk-mat.jpg",
+      "alt": "Felt Desk Mat in grey"
+    }
+  ],
+  "price": {
+    "amount": 42,
+    "currency": "USD"
+  },
+  "variants": [
+    { "id": "p5v1", "title": "Grey", "price": { "amount": 42, "currency": "USD" }, "available": true },
+    { "id": "p5v2", "title": "Camel", "price": { "amount": 42, "currency": "USD" }, "available": true }
+  ],
+  "tags": ["felt", "desk"],
+  "collectionHandles": ["desk"]
+}

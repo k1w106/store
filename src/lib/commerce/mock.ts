@@ -1,17 +1,20 @@
 /**
- * Mock provider — the theme works out of the box with this catalog,
- * no keys, no accounts. Swap via COMMERCE_PROVIDER env (see index.ts).
+ * Mock provider — reads individual JSON files from src/data/products/ and
+ * src/data/collections/. Pages CMS edits these files via GitHub.
  */
 import type { CommerceProvider, Product, Collection, CartLine } from './types';
-import catalog from '../../data/mock-catalog.json';
 
 const withBase = (path: string) => import.meta.env.BASE_URL.replace(/\/?$/, '/') + path.replace(/^\/+/, '');
 
-const products = (catalog.products as unknown as Product[]).map((product) => ({
+const productFiles = import.meta.glob<Product>('../../data/products/*.json', { eager: true, import: 'default' });
+const collectionFiles = import.meta.glob<Collection>('../../data/collections/*.json', { eager: true, import: 'default' });
+
+const products = Object.values(productFiles).map((product) => ({
   ...product,
   images: product.images.map((image) => ({ ...image, src: withBase(image.src) })),
 }));
-const collections = (catalog.collections as unknown as Collection[]).map((collection) => ({
+
+const collections = Object.values(collectionFiles).map((collection) => ({
   ...collection,
   image: collection.image && { ...collection.image, src: withBase(collection.image.src) },
 }));
@@ -38,8 +41,6 @@ export const mockProvider: CommerceProvider = {
   },
 
   async checkoutUrl(_lines: CartLine[]) {
-    // Mock mode has no real checkout — point at the docs explaining how to
-    // connect Shopify (two env vars) instead.
     return withBase('/connect-a-backend');
   },
 };

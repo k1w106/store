@@ -1,0 +1,25 @@
+{
+  "id": "p4",
+  "handle": "walnut-laptop-stand",
+  "title": "Walnut Laptop Stand",
+  "description": "Solid walnut, cork-lined, raises the screen 14 cm to eye level. Ships flat, assembles without tools.",
+  "images": [
+    {
+      "src": "/products/walnut-laptop-stand.jpg",
+      "alt": "Walnut Laptop Stand with a laptop on top"
+    },
+    {
+      "src": "/products/hero.jpg",
+      "alt": "Walnut stand in a full desk setup"
+    }
+  ],
+  "price": {
+    "amount": 89,
+    "currency": "USD"
+  },
+  "variants": [
+    { "id": "p4v1", "title": "Default", "price": { "amount": 89, "currency": "USD" }, "available": true }
+  ],
+  "tags": ["wood", "desk"],
+  "collectionHandles": ["desk"]
+}

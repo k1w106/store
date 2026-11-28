@@ -1,0 +1,21 @@
+{
+  "id": "p3",
+  "handle": "focus-cap",
+  "title": "Focus Cap",
+  "description": "Low-profile unstructured cap. One size, brass buckle, no loud logos — just a tiny stitched cursor.",
+  "images": [
+    {
+      "src": "/products/focus-cap.jpg",
+      "alt": "Focus Cap — navy dad cap"
+    }
+  ],
+  "price": {
+    "amount": 24,
+    "currency": "USD"
+  },
+  "variants": [
+    { "id": "p3v1", "title": "One size", "price": { "amount": 24, "currency": "USD" }, "available": true }
+  ],
+  "tags": ["cap"],
+  "collectionHandles": ["apparel"]
+}
