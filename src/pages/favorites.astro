@@ -57,7 +57,7 @@ const local = (path: string) => import.meta.env.BASE_URL.replace(/\/?$/, '/') + 
             </div>
             <div class="flex flex-col items-center justify-center gap-2 px-4 py-3">
               <h3 class="truncate text-[15px] font-medium group-hover:underline group-hover:underline-offset-4">${p.title}</h3>
-              <p class="text-[18px] text-muted">$${p.price}</p>
+              <p class="text-[18px] text-muted">${Math.round(p.price).toLocaleString('vi-VN')}đ</p>
             </div>
           </a>`,
         )

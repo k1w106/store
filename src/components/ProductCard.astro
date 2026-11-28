@@ -8,7 +8,7 @@ interface Props {
 }
 const { product } = Astro.props;
 const img = product.images[0];
-const onSale = !!product.compareAtPrice;
+const onSale = !!product.compareAtPrice?.amount;
 const firstAvailable = product.variants.find((v) => v.available) ?? product.variants[0];
 
 const cartLine = JSON.stringify({
@@ -64,8 +64,8 @@ const cartLine = JSON.stringify({
   <div class="flex flex-col items-center justify-center gap-2 px-4 py-3">
     <h3 class="truncate text-[15px] font-medium group-hover:underline group-hover:underline-offset-4">{product.title}</h3>
     <p class="text-[18px] text-muted">
-      {onSale && <s class="mr-1.5 text-[13px]">${product.compareAtPrice!.amount}</s>}
-      <span class:list={[onSale && 'font-semibold text-pine']}>${product.price.amount}</span>
+      {onSale && <s class="mr-1.5 text-[13px]">{product.compareAtPrice?.amount.toLocaleString('vi-VN')}đ</s>}
+      <span class:list={[onSale && 'font-semibold text-pine']}>{product.price.amount.toLocaleString('vi-VN')}đ</span>
     </p>
   </div>
 </a>
