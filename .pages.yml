@@ -29,6 +29,8 @@ content:
           - name: src
             label: Ảnh
             type: image
+            options:
+              extensions: [jpg, png]
           - name: alt
             label: Mô tả ảnh
             type: string
