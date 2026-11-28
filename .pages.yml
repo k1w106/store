@@ -1,4 +1,6 @@
-media: public/products
+media:
+  input: public/products
+  output: /products
 
 content:
   - name: products
