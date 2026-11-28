@@ -14,7 +14,7 @@ content:
       - name: handle
         label: Handle (URL slug)
         type: string
-        description: Dùng làm đường dẫn sản phẩm, viết thường không dấu, dùng dấu gạch nối. VD: ao-thun-den
+        description: "Dùng làm đường dẫn sản phẩm, viết thường không dấu, dùng dấu gạch nối. VD: ao-thun-den"
       - name: title
         label: Tên sản phẩm
         type: string
@@ -64,7 +64,7 @@ content:
             label: ID
             type: string
           - name: title
-            label: Tên (VD: S, M, L, XL)
+            label: "Tên (VD: S, M, L, XL)"
             type: string
           - name: price
             label: Giá
@@ -85,12 +85,12 @@ content:
         label: Tags
         type: string
         list: true
-        description: Dùng để lọc sản phẩm. VD: cotton, sale, dark-roast
+        description: "Dùng để lọc sản phẩm. VD: cotton, sale, dark-roast"
       - name: collectionHandles
         label: Thuộc bộ sưu tập
         type: string
         list: true
-        description: Handle của collection. VD: apparel, desk, coffee
+        description: "Handle của collection. VD: apparel, desk, coffee"
 
   - name: collections
     label: Bộ sưu tập
