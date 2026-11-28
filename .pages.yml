@@ -5,8 +5,8 @@ content:
     label: Sản phẩm
     type: collection
     path: src/data/products
-    filename: "{fields.handle}"
-    extension: json
+    filename: "{fields.handle}.json"
+    format: json
     fields:
       - name: id
         label: ID
@@ -96,8 +96,8 @@ content:
     label: Bộ sưu tập
     type: collection
     path: src/data/collections
-    filename: "{fields.handle}"
-    extension: json
+    filename: "{fields.handle}.json"
+    format: json
     fields:
       - name: id
         label: ID
