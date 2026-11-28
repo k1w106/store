@@ -10,12 +10,28 @@
     }
   ],
   "price": {
-    "amount": 19,
-    "currency": "USD"
+    "amount": 19000,
+    "currency": "VND"
+  },
+  "compareAtPrice": {
+    "currency": "VND"
   },
   "variants": [
-    { "id": "p6v1", "title": "Default", "price": { "amount": 19, "currency": "USD" }, "available": true }
+    {
+      "id": "p6v1",
+      "title": "Default",
+      "price": {
+        "amount": 19000,
+        "currency": "VND"
+      },
+      "available": true
+    }
   ],
-  "tags": ["leather", "desk"],
-  "collectionHandles": ["desk"]
+  "tags": [
+    "leather",
+    "desk"
+  ],
+  "collectionHandles": [
+    "desk"
+  ]
 }
