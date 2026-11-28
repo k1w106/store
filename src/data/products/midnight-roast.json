@@ -1,7 +1,7 @@
 {
   "id": "p7",
   "handle": "midnight-roast",
-  "title": "Midnight Roast",
+  "title": "Hạt cà phê",
   "description": "Dark roast for long nights: chocolate, hazelnut, zero sourness. Whole beans, 340 g, roasted the week we ship it.",
   "images": [
     {
@@ -17,10 +17,33 @@
     "amount": 18,
     "currency": "USD"
   },
+  "compareAtPrice": {
+    "currency": "USD"
+  },
   "variants": [
-    { "id": "p7v1", "title": "Whole bean", "price": { "amount": 18, "currency": "USD" }, "available": true },
-    { "id": "p7v2", "title": "Ground", "price": { "amount": 18, "currency": "USD" }, "available": true }
+    {
+      "id": "p7v1",
+      "title": "Whole bean",
+      "price": {
+        "amount": 18,
+        "currency": "USD"
+      },
+      "available": true
+    },
+    {
+      "id": "p7v2",
+      "title": "Ground",
+      "price": {
+        "amount": 18,
+        "currency": "USD"
+      },
+      "available": true
+    }
   ],
-  "tags": ["dark-roast"],
-  "collectionHandles": ["coffee"]
+  "tags": [
+    "dark-roast"
+  ],
+  "collectionHandles": [
+    "coffee"
+  ]
 }
